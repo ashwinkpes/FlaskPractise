@@ -7,6 +7,9 @@ app = Flask(__name__)
 def available_methods():
     """
     Returns a list of available calculator methods and their endpoints.
+
+    Returns:
+        Response: A Flask JSON response containing a welcome message and a dictionary of available methods with their endpoints and expected input formats.
     """
     methods = {
         'sum': '/sum (POST, JSON: {"a": number, "b": number})',
@@ -22,6 +25,25 @@ def available_methods():
 
 @app.route('/sum', methods=['POST'])
 def sum_route():
+    """
+    Endpoint to calculate the sum of two numbers.
+
+    Expects a JSON payload with keys 'a' and 'b' in the POST request body.
+    Returns a JSON response containing the sum of 'a' and 'b' under the key 'result'.
+
+    Request Example:
+        POST /sum
+        Content-Type: application/json
+        {
+            "a": 5,
+            "b": 3
+        }
+
+    Response Example:
+        {
+            "result": 8
+        }
+    """
     data = request.get_json()
     a = data.get('a')
     b = data.get('b')
@@ -55,7 +77,7 @@ def quotient_route():
 @app.route('/percentage', methods=['POST'])
 def percentage_route():
     data = request.get_json()
-    a = data.get('a')
+    a = da`ta.get('a')
     b = data.get('b')
     result = Calculator.calculate_percentage(a, b)
     return jsonify({'result': result})
