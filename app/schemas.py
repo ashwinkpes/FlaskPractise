@@ -1,7 +1,9 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class EmployeeBase(BaseModel):
     name: str
+    email: Optional[str] = None
     role: str = "user"
 
 class EmployeeCreate(EmployeeBase):

@@ -6,6 +6,7 @@ class Employee(Base):
     __tablename__ = "employee"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
+    email = Column(String, unique=True, index=True)
     role = Column(String, default="user")
     hashed_password = Column(String)
     departments = relationship("EmpDepartment", back_populates="employee")

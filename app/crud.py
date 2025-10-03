@@ -3,7 +3,7 @@ from . import models, schemas, auth
 
 def create_employee(db: Session, employee: schemas.EmployeeCreate):
     hashed_password = auth.get_password_hash(employee.password)
-    db_employee = models.Employee(name=employee.name, role=employee.role, hashed_password=hashed_password)
+    db_employee = models.Employee(name=employee.name, email=employee.email, role=employee.role, hashed_password=hashed_password)
     db.add(db_employee)
     db.commit()
     db.refresh(db_employee)
@@ -19,6 +19,7 @@ def update_employee(db: Session, employee_id: int, employee: schemas.EmployeeBas
     db_employee = get_employee(db, employee_id)
     if db_employee:
         db_employee.name = employee.name
+        db_employee.email = employee.email
         db_employee.role = employee.role
         db.commit()
         db.refresh(db_employee)
