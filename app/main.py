@@ -4,6 +4,7 @@ from . import models, schemas, crud, auth, dependencies, exceptions, database
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 
+####initializing fastAPI app   
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
